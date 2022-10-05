@@ -1,0 +1,44 @@
+const int SW_pin = 2;
+const int X_pin = 0;
+const int Y_pin = 1;
+#define UP_LED 11
+#define RIGHT_LED 9
+#define LEFT_LED 10
+#define DOWN_LED 8
+void setup(){
+pinMode(SW_pin, INPUT);
+digitalWrite(SW_pin, HIGH);
+Serial.begin(115200);
+pinMode(UP_LED, OUTPUT);
+pinMode(RIGHT_LED, OUTPUT);
+pinMode(LEFT_LED, OUTPUT);
+pinMode(DOWN_LED, OUTPUT);
+}
+void loop(){
+delay(1);
+if(analogRead(X_pin) > 550){
+digitalWrite(UP_LED, HIGH);
+}
+else if(analogRead(X_pin) < 500){
+digitalWrite(DOWN_LED, HIGH);
+}
+else if(analogRead(Y_pin) > 550){
+digitalWrite(RIGHT_LED, HIGH);
+}
+else if(analogRead(Y_pin) < 500){
+digitalWrite(LEFT_LED, HIGH);
+}
+ else if(digitalRead(SW_pin) == 1){
+ digitalWrite(UP_LED, HIGH);
+digitalWrite(LEFT_LED, HIGH);
+digitalWrite(RIGHT_LED, HIGH);
+digitalWrite(DOWN_LED, HIGH);
+}
+else{
+digitalWrite(UP_LED, LOW);
+digitalWrite(LEFT_LED, LOW);
+
+digitalWrite(RIGHT_LED, LOW);
+digitalWrite(DOWN_LED, LOW);
+}
+}
